@@ -12,4 +12,10 @@ The project uses the techniques of NLP and machine learning model trained on a d
 ## Try it out!
 - [Health-Forecast](https://huggingface.co/spaces/vivek-a666/Diagnosis_Prodigy)
 
+## Screenshots
+<center><img src="ss1.png"></center>
+<center><img src="ss3.png"></center>
+<center><img src="ss4.png"></center>
+
+
 #### Note: The application may provide iaccurate or incorrect results since the model was trained on Drug reviews dataset which has lots data imbalance in it
