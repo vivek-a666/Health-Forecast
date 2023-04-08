@@ -11,11 +11,9 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import pickle
 import torch.nn as nn
-import speech_recognition as sr
 
-
-le = pickle.load(open(r"C:\Users\pavan\Diagnosis_Prodigy\encoder (1).pkl", 'rb'))
-tokenizer = pickle.load(open(r"C:\Users\pavan\Diagnosis_Prodigy\tokenizer (1).pkl", 'rb'))
+le = pickle.load(open(r"encoder (1).pkl", 'rb'))
+tokenizer = pickle.load(open(r"tokenizer (1).pkl", 'rb'))
 
 def clean_text(x):
     pattern = r'[^a-zA-z0-9\s]'
@@ -75,7 +73,7 @@ class CNN_Text(nn.Module):
         logit = self.fc1(x) 
         return logit
 
-model = torch.load(r"C:\Users\pavan\Diagnosis_Prodigy\textcnn_model (1)", map_location=torch.device('cpu'))
+model = torch.load(r"textcnn_model (1)", map_location=torch.device('cpu'))
         
 def predict_single(x):    
     # lower the text
@@ -101,42 +99,17 @@ def predict_single(x):
     pred = le.classes_[pred]
     return pred[0]
 
-def handle_voice_input():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        st.write("Say something...")
-        audio = r.listen(source)
-    try:
-        text = r.recognize_google(audio)
-        st.write("You said: ", text)
-        return text
-    except sr.UnknownValueError:
-        st.write("Could not understand audio")
-    except sr.RequestError as e:
-        st.write("Could not request results from Google Speech Recognition service; {0}".format(e))
-
-# Define the Streamlit app
 def app():
-    st.title("Text Classification App")
-
-    # Add a button to start recording the voice
-    col1, col2 =  st.columns([1, 3])
-    with col1:
-        record_button = st.button("Record Audio")
-    with col2:
-        input_text = st.text_input("Enter text")
-
-    if record_button:
-        # Handle voice input
-        voice_text = handle_voice_input()
-        if voice_text:
-            input_text = voice_text
-
-    if input_text:
-        # Make the prediction
-        pred = predict_single(input_text)
-        st.write("Prediction:", pred)
-
-# Run the app
-if __name__ == "__main__":
+    st.title('Health Forecast')
+    st.write('Enter your symptoms below and the app will predict the possible medical condition:')
+    # Get user input
+    symptoms = st.text_input('Symptoms')
+    # Predict
+    if st.button('Predict'):
+        if not symptoms:
+            st.write('Please enter your symptoms')
+        else:
+            condition = predict_single(symptoms)
+            st.write('The predicted medical condition is:', condition)
+if __name__ == '__main__':
     app()
