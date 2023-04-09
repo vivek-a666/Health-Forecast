@@ -10,7 +10,7 @@ The project uses the techniques of NLP and machine learning model trained on a d
 - [GloVe- Predefined Text embeddings](https://www.kaggle.com/datasets/takuok/glove840b300dtxt)
 
 ## Try it out!
-- [Health-Forecast](https://huggingface.co/spaces/vivek-a666/Diagnosis_Prodigy)
+- [Health-Forecast](https://huggingface.co/spaces/vivek-a666/Health_Forecast)
 
 ## Screenshots
 <center><img src="ss1.png"></center>
