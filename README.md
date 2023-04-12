@@ -19,4 +19,4 @@ The project uses the techniques of NLP and machine learning model trained on a d
 <center><img src="ss4.png"></center>
 
 
-#### Note: The application may provide inaccurate or incorrect results since the model was trained on Drug reviews dataset which has lots data imbalance in it
+#### Note: The application may provide inaccurate or incorrect results since the model was trained on Drug reviews dataset which has lots of data imbalance in it
